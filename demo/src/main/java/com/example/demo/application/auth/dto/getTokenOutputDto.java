@@ -1,4 +1,4 @@
-package com.example.demo.auth.dto;
+package com.example.demo.application.auth.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;

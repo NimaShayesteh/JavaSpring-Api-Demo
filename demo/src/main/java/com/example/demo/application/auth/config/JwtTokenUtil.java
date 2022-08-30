@@ -1,16 +1,12 @@
-package com.example.demo.auth.config;
+package com.example.demo.application.auth.config;
 
 import java.io.Serializable;
-import java.security.PublicKey;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.example.demo.base.TokenObjectClass;
-import io.jsonwebtoken.JwtBuilder;
+import com.example.demo.domain.base.TokenObjectClass;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;

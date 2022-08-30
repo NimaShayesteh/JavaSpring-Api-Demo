@@ -1,6 +1,6 @@
 package com.example.demo.student;
 
-import org.springframework.stereotype.Component;
+import com.example.demo.jpa.entity.student;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package com.example.demo.auth.config;
+package com.example.demo.application.auth.config;
 
-import com.example.demo.auth.service.JwtUserDetailsService;
+import com.example.demo.application.auth.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

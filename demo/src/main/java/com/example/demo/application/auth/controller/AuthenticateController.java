@@ -1,14 +1,13 @@
-package com.example.demo.auth.controller;
+package com.example.demo.application.auth.controller;
 
-import com.example.demo.auth.config.JwtTokenUtil;
-import com.example.demo.auth.dto.getTokenInputDto;
-import com.example.demo.auth.dto.getTokenOutputDto;
-import com.example.demo.auth.service.JwtUserDetailsService;
+import com.example.demo.application.auth.dto.getTokenInputDto;
+import com.example.demo.application.auth.dto.getTokenOutputDto;
+import com.example.demo.application.auth.config.JwtTokenUtil;
+import com.example.demo.application.auth.service.JwtUserDetailsService;
 
 
-import com.example.demo.base.BaseResponse;
-import com.example.demo.base.TokenObjectClass;
-import io.jsonwebtoken.Claims;
+import com.example.demo.domain.base.BaseResponse;
+import com.example.demo.domain.base.TokenObjectClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.lang.reflect.Method;
 
 @RestController
 //@RequestMapping(path = "api/v1")
