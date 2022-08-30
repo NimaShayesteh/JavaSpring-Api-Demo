@@ -1,11 +1,16 @@
 package com.example.demo.auth.config;
 
 import java.io.Serializable;
+import java.security.PublicKey;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.example.demo.base.TokenObjectClass;
+import io.jsonwebtoken.JwtBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -51,9 +56,14 @@ public class JwtTokenUtil implements Serializable {
     }
 
     //generate token for user
-    public String generateToken(UserDetails userDetails) {
+    public TokenObjectClass generateToken(UserDetails userDetails) {
+        var finalToken = new TokenObjectClass();
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        var generatedToken =  doGenerateToken(claims, userDetails.getUsername());
+        final Claims claimssss = getAllClaimsFromToken(generatedToken);
+        finalToken.Token = generatedToken;
+        finalToken.TokenExpireDateTime = claimssss.getExpiration();
+        return  finalToken;
     }
 
     //while creating the token -
@@ -74,3 +84,5 @@ public class JwtTokenUtil implements Serializable {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
+
+

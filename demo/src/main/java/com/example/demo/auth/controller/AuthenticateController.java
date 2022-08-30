@@ -6,6 +6,9 @@ import com.example.demo.auth.dto.getTokenOutputDto;
 import com.example.demo.auth.service.JwtUserDetailsService;
 
 
+import com.example.demo.base.BaseResponse;
+import com.example.demo.base.TokenObjectClass;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Method;
 
 @RestController
-//@RequestMapping(path = "api/v1/auth")
+//@RequestMapping(path = "api/v1")
 @CrossOrigin
 public class AuthenticateController {
 
@@ -38,17 +41,21 @@ public class AuthenticateController {
 
 
 
-    @RequestMapping(value = "/authenticate" , method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody getTokenInputDto authenticationRequest)throws  Exception{
+    @RequestMapping(path = "/authenticate" , method = RequestMethod.POST)
+    public BaseResponse<ResponseEntity<?> > createAuthenticationToken(@RequestBody getTokenInputDto authenticationRequest)throws  Exception{
+        final BaseResponse FinalResponse = new BaseResponse();
         authenticationRequest.setUserName("javainuse");
         authenticate(authenticationRequest.getUserName(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = jwtUserDetailsService
                 .loadUserByUsername(authenticationRequest.getUserName());
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        var tokenclass  = new TokenObjectClass();
+        tokenclass = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new getTokenOutputDto(token));
+        FinalResponse.setResult(ResponseEntity.ok(new getTokenOutputDto(tokenclass.getToken(), tokenclass.getTokenExpireDateTime())));
+        FinalResponse.setHasError(false);
+        return  FinalResponse;
     }
 
 
