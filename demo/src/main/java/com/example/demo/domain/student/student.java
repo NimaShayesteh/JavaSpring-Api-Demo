@@ -1,4 +1,4 @@
-package com.example.demo.jpa.entity;
+package com.example.demo.domain.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
